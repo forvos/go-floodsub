@@ -777,11 +777,7 @@ func TestPeerDisconnect(t *testing.T) {
 	peers := psubs[0].ListPeers("foo")
 	assertPeerList(t, peers, hosts[1].ID())
 	for _, c := range hosts[1].Network().ConnsToPeer(hosts[0].ID()) {
-		streams := c.GetStreams()
-		if err != nil {
-			t.Fatal(err)
-		}
-		for _, s := range streams {
+		for _, s := range c.GetStreams() {
 			s.Close()
 		}
 	}
